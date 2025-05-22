@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registration Form - Warm Sunset</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      /* Warm Sunset animated gradient background */
+      background: linear-gradient(-45deg, #ff5f6d, #ffc371, #6a11cb, #2575fc);
+      background-size: 600% 600%;
+      animation: gradientShift 20s ease infinite;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    nav {
+      background-color: rgba(51, 51, 51, 0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      user-select: none;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #ffc371;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 4rem auto;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 25px #ffc371;
+      animation: fadeIn 0.5s ease-in-out;
+      width: 100%;
+      position: relative;
+      z-index: 5;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ffc371;
+      text-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step {
+      display: none;
+      flex-direction: column;
+      gap: 1.2rem;
+      animation: fadeSlideIn 0.4s ease forwards;
+    }
+
+    .step.active {
+      display: flex;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    input {
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      transition: border 0.3s ease;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border: 2px solid #ffc371;
+      background: #fff8e1cc;
+      color: #000;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      background-color: #ffc371;
+      color: #000;
+      font-weight: bold;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #e5b15a;
+      transform: scale(1.05);
+    }
+
+    button:disabled {
+      background-color: #ffe3aa;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    nav strong {
+      font-size: 1.3rem;
+      color: #ffc371;
+      user-select: text;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div><strong>MyForm</strong></div>
+  </nav>
+
+  <div class="container">
+    <h2>Registration Form</h2>
+
+    <form id="regForm" method="POST" action="login.html" novalidate>
+      <!-- Step 1 -->
+      <div class="step active" id="step1">
+        <div>
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div>
+          <label for="middleInitial">Middle Initial:</label>
+          <input type="text" id="middleInitial" name="middleInitial" maxlength="1" />
+        </div>
+        <div>
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" min="1" required />
+        </div>
+        <div>
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div class="button-group">
+          <button type="button" id="nextBtn">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <div>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="button-group">
+          <button type="button" id="backBtn">Back</button>
+          <button type="submit" id="submitBtn">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    (() => {
+      const form = document.getElementById('regForm');
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+      const nextBtn = document.getElementById('nextBtn');
+      const backBtn = document.getElementById('backBtn');
+
+      function validateStep1() {
+        const firstName = form.firstName;
+        const age = form.age;
+        const lastName = form.lastName;
+
+        if (!firstName.value.trim()) {
+          alert('Please enter your First Name');
+          firstName.focus();
+          return false;
+        }
+        if (!age.value || Number(age.value) < 1) {
+          alert('Please enter a valid Age');
+          age.focus();
+          return false;
+        }
+        if (!lastName.value.trim()) {
+          alert('Please enter your Last Name');
+          lastName.focus();
+          return false;
+        }
+        return true;
+      }
+
+      nextBtn.addEventListener('click', () => {
+        if (validateStep1()) {
+          step1.classList.remove('active');
+          step2.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+
+      backBtn.addEventListener('click', () => {
+        step2.classList.remove('active');
+        step1.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // optional: prevent enter key in step 1 from submitting form prematurely
+      form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const activeStep = step1.classList.contains('active') ? 1 : 2;
+          if (activeStep === 1) {
+            e.preventDefault();
+            nextBtn.click();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+

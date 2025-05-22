@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Art and Humanities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+  #menuToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  #menuToggle:hover {
+    transform: scale(1.1);
+    color: #e3eb0d;
+  }
+
+  .content.sidebar-hidden {
+    margin-right: 0;
+  }
+
+  .sidebar {
+    width: 300px;
+    background: transparent;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: fixed;
+    right: 0;
+    top: 59px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    z-index: 1000;
+  }
+
+  .sidebar.visible {
+    transform: translateX(0);
+  }
+
+  .sidebar:hover {
+    background: transparent;
+    transition: background 0.3s ease;
+  }
+
+  .sidebar-card {
+    background: transparent;
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .sidebar-card.active {
+    background: transparent;
+  }
+
+  .sidebar-card a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    gap: 15px;
+    transition: color 0.3s;
+  }
+
+  .sidebar-card a:hover {
+    color: #ffcc00;
+  }
+
+  .sidebar-card i {
+    color: #ffcc00;
+    font-size: 24px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      margin-right: 0;
+    }
+    .main-body {
+      padding: 30px;
+    }
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: fixed;
+      top: 0;
+      background-color: transparent;
+      transform: translateX(100%);
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar.visible {
+      transform: translateX(0);
+    }
+  }
+  </style>
+</head>
+<body class="bg-cover bg-no-repeat bg-center min-h-screen" style="background-image: url('Back1.webp'); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+  <!-- Hamburger Button -->
+  <button id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="rightSidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="rightSidebar" aria-label="Sidebar Navigation">
+    <div class="sidebar-card active"><a href="Home.html"><i class="fas fa-home"></i> Home</a></div>
+    <div class="sidebar-card"><a href="What is Art.html"><i class="fas fa-palette"></i> What is Art?</a></div>
+    <div class="sidebar-card"><a href="Art History Timeline.html"><i class="fas fa-clock"></i> Art History Timeline</a></div>
+    <div class="sidebar-card"><a href="Art Trivia.html"><i class="fas fa-lightbulb"></i> Art Trivia</a></div>
+    <div class="sidebar-card"><a href="Top-Rated Artwork Gallery.html"><i class="fas fa-star"></i> Top-Rated Gallery</a></div>
+    <div class="sidebar-card"><a href="Art & Culture News.html"><i class="fas fa-newspaper"></i> Art & Culture News</a></div>
+    <div class="sidebar-card"><a href="Polls or Quizzes.html"><i class="fas fa-question-circle"></i> Polls or Quizzes</a></div>
+    <div class="sidebar-card"><a href="Logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+  </aside>
+
+  <!-- Introduction -->
+  <section id="intro" class="bg-black bg-opacity-60 text-white px-6 py-12">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold mb-4">What is Art?</h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Art is a creative expression of emotions, thoughts, and ideas that transcend the ordinary. It reflects our identity, culture, and perspectives, offering us a way to explore and communicate what it means to be human. It is dynamic, constantly evolving as society progresses. Each piece, from ancient artifacts to contemporary installations, represents a part of our shared history and diverse culture.
+      </p>
+      <p class="text-lg leading-relaxed">
+        The humanities are the branches of knowledge that investigate human beings, their culture, and self-expression. It includes the study of languages, literature, history, philosophy, religion, and the arts. These disciplines help us understand the human experience and how we connect to one another through stories, images, and music.
+      </p>
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section id="videos" class="bg-black bg-opacity-50 px-6 py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white bg-opacity-10 p-4 rounded-xl shadow hover:scale-105 transition duration-300">
+        <iframe class="w-full h-64 rounded-xl" src="https://www.youtube.com/embed/M7eCgNYUvxc" frameborder="0" allowfullscreen></iframe>
+        <h3 class="mt-4 text-xl text-white font-semibold">Nature of Art</h3>
+        <p class="text-sm text-gray-300 mt-2">Explore how art influences our lives and why it is essential across cultures.</p>
+      </div>
+      <div class="bg-white bg-opacity-10 p-4 rounded-xl shadow hover:scale-105 transition duration-300">
+        <iframe class="w-full h-64 rounded-xl" src="https://www.youtube.com/embed/cDzcoyeaRKI" frameborder="0" allowfullscreen></iframe>
+        <h3 class="mt-4 text-xl text-white font-semibold">Understanding Art</h3>
+        <p class="text-sm text-gray-300 mt-2">Dive into the core assumptions and concepts behind artistic expression.</p>
+      </div>
+      <div class="bg-white bg-opacity-10 p-4 rounded-xl shadow hover:scale-105 transition duration-300 md:col-span-2">
+        <iframe class="w-full h-64 rounded-xl" src="https://www.youtube.com/embed/9eEZmcjY1Uo" frameborder="0" allowfullscreen></iframe>
+        <h3 class="mt-4 text-xl text-white font-semibold">Art and Society</h3>
+        <p class="text-sm text-gray-300 mt-2">How art mirrors the values, beliefs, and changes in human society.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Element -->
+  <section id="interactive" class="bg-black bg-opacity-60 text-white px-6 py-12">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">🎨 Share Your Thoughts</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full p-2 rounded-lg text-black">
+        <textarea placeholder="What does art mean to you?" rows="4" class="w-full p-2 rounded-lg text-black"></textarea>
+        <button type="submit" class="bg-lime-500 hover:bg-lime-600 text-black px-6 py-2 rounded-full font-semibold transition">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="text-center text-white py-6 bg-black bg-opacity-70">
+    <p class="text-sm">&copy; 2022-2023 | Presented by Wendell De Jesus | Celebrating Art and Expression</p>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('rightSidebar');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('visible');
+      const isVisible = sidebar.classList.contains('visible');
+      menuToggle.setAttribute('aria-expanded', isVisible);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artful Gallery - Polls & Quizzes</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    #menuToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 30px;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1100;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    #menuToggle:hover {
+      transform: scale(1.1);
+      color: #e3eb0d;
+    }
+
+    .content.sidebar-hidden {
+      margin-right: 0;
+    }
+
+    .sidebar {
+      width: 300px;
+      background: transparent;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: fixed;
+      right: 0;
+      top: 59px;
+      height: 100vh;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+      transform: translateX(100%);
+      z-index: 1000;
+    }
+
+    .sidebar.visible {
+      transform: translateX(0);
+    }
+
+    .sidebar:hover {
+      background: transparent;
+      transition: background 0.3s ease;
+    }
+
+    .sidebar-card {
+      background: transparent;
+      border-radius: 10px;
+      padding: 15px;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .sidebar-card.active {
+      background: transparent;
+    }
+
+    .sidebar-card a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      gap: 15px;
+      transition: color 0.3s;
+    }
+
+    .sidebar-card a:hover {
+      color: #ffcc00;
+    }
+
+    .sidebar-card i {
+      color: #ffcc00;
+      font-size: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .content {
+        flex-direction: column;
+        margin-right: 0;
+      }
+      .main-body {
+        padding: 30px;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        background-color: transparent;
+        transform: translateX(100%);
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+      .sidebar.visible {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <!-- Hamburger Button -->
+  <button id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="rightSidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="rightSidebar" aria-label="Sidebar Navigation">
+    <div class="sidebar-card active"><a href="Home.html"><i class="fas fa-home"></i> Home</a></div>
+    <div class="sidebar-card"><a href="What is Art.html"><i class="fas fa-palette"></i> What is Art?</a></div>
+    <div class="sidebar-card"><a href="Art History Timeline.html"><i class="fas fa-clock"></i> Art History Timeline</a></div>
+    <div class="sidebar-card"><a href="Art Trivia.html"><i class="fas fa-lightbulb"></i> Art Trivia</a></div>
+    <div class="sidebar-card"><a href="Top-Rated Artwork Gallery.html"><i class="fas fa-star"></i> Top-Rated Gallery</a></div>
+    <div class="sidebar-card"><a href="Art & Culture News.html"><i class="fas fa-newspaper"></i> Art & Culture News</a></div>
+    <div class="sidebar-card"><a href="Polls or Quizzes.html"><i class="fas fa-question-circle"></i> Polls or Quizzes</a></div>
+    <div class="sidebar-card"><a href="Logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+  </aside>
+
+  <div class="max-w-4xl mx-auto p-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">Art Poll & Quiz</h1>
+
+    <!-- Art Poll -->
+    <section class="mb-10 bg-white shadow-md rounded-lg p-6">
+      <h2 class="text-2xl font-semibold mb-4">Which art style do you prefer the most?</h2>
+      <form id="artPoll" class="space-y-2">
+        <label class="block">
+          <input type="radio" name="style" value="Realism" class="mr-2"> Realism
+        </label>
+        <label class="block">
+          <input type="radio" name="style" value="Impressionism" class="mr-2"> Impressionism
+        </label>
+        <label class="block">
+          <input type="radio" name="style" value="Abstract" class="mr-2"> Abstract
+        </label>
+        <label class="block">
+          <input type="radio" name="style" value="Surrealism" class="mr-2"> Surrealism
+        </label>
+        <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit Vote</button>
+      </form>
+      <p id="pollResult" class="mt-4 font-medium text-green-600"></p>
+    </section>
+
+    <!-- Art Quiz -->
+    <section class="bg-white shadow-md rounded-lg p-6">
+      <h2 class="text-2xl font-semibold mb-4">Comprehensive Art Quiz</h2>
+      <form id="artQuiz" class="space-y-6">
+        <div>
+          <p class="font-medium">1. Who painted the Mona Lisa?</p>
+          <label class="block"><input type="radio" name="q1" value="Leonardo da Vinci" class="mr-2"> Leonardo da Vinci</label>
+          <label class="block"><input type="radio" name="q1" value="Michelangelo" class="mr-2"> Michelangelo</label>
+          <label class="block"><input type="radio" name="q1" value="Raphael" class="mr-2"> Raphael</label>
+          <label class="block"><input type="radio" name="q1" value="Donatello" class="mr-2"> Donatello</label>
+        </div>
+        <div>
+          <p class="font-medium">2. Which movement is Salvador Dalí associated with?</p>
+          <label class="block"><input type="radio" name="q2" value="Surrealism" class="mr-2"> Surrealism</label>
+          <label class="block"><input type="radio" name="q2" value="Cubism" class="mr-2"> Cubism</label>
+          <label class="block"><input type="radio" name="q2" value="Impressionism" class="mr-2"> Impressionism</label>
+          <label class="block"><input type="radio" name="q2" value="Baroque" class="mr-2"> Baroque</label>
+        </div>
+        <div>
+          <p class="font-medium">3. What is the primary material used in sculpture?</p>
+          <label class="block"><input type="radio" name="q3" value="Clay" class="mr-2"> Clay</label>
+          <label class="block"><input type="radio" name="q3" value="Canvas" class="mr-2"> Canvas</label>
+          <label class="block"><input type="radio" name="q3" value="Paper" class="mr-2"> Paper</label>
+          <label class="block"><input type="radio" name="q3" value="Glass" class="mr-2"> Glass</label>
+        </div>
+        <div>
+          <p class="font-medium">4. Who painted "Starry Night"?</p>
+          <label class="block"><input type="radio" name="q4" value="Vincent van Gogh" class="mr-2"> Vincent van Gogh</label>
+          <label class="block"><input type="radio" name="q4" value="Claude Monet" class="mr-2"> Claude Monet</label>
+          <label class="block"><input type="radio" name="q4" value="Henri Matisse" class="mr-2"> Henri Matisse</label>
+          <label class="block"><input type="radio" name="q4" value="Edvard Munch" class="mr-2"> Edvard Munch</label>
+        </div>
+        <div>
+          <p class="font-medium">5. What is the term for painting on wet plaster?</p>
+          <label class="block"><input type="radio" name="q5" value="Fresco" class="mr-2"> Fresco</label>
+          <label class="block"><input type="radio" name="q5" value="Acrylic" class="mr-2"> Acrylic</label>
+          <label class="block"><input type="radio" name="q5" value="Oil" class="mr-2"> Oil</label>
+          <label class="block"><input type="radio" name="q5" value="Tempera" class="mr-2"> Tempera</label>
+        </div>
+        <div>
+          <p class="font-medium">6. Which sculpture is Michelangelo famous for?</p>
+          <label class="block"><input type="radio" name="q6" value="David" class="mr-2"> David</label>
+          <label class="block"><input type="radio" name="q6" value="The Thinker" class="mr-2"> The Thinker</label>
+          <label class="block"><input type="radio" name="q6" value="Venus de Milo" class="mr-2"> Venus de Milo</label>
+          <label class="block"><input type="radio" name="q6" value="Ecstasy of Saint Teresa" class="mr-2"> Ecstasy of Saint Teresa</label>
+        </div>
+        <div>
+          <p class="font-medium">7. Which movement is associated with Picasso?</p>
+          <label class="block"><input type="radio" name="q7" value="Cubism" class="mr-2"> Cubism</label>
+          <label class="block"><input type="radio" name="q7" value="Realism" class="mr-2"> Realism</label>
+          <label class="block"><input type="radio" name="q7" value="Romanticism" class="mr-2"> Romanticism</label>
+          <label class="block"><input type="radio" name="q7" value="Neoclassicism" class="mr-2"> Neoclassicism</label>
+        </div>
+        <div>
+          <p class="font-medium">8. What is the technique of printing from an incised surface called?</p>
+          <label class="block"><input type="radio" name="q8" value="Engraving" class="mr-2"> Engraving</label>
+          <label class="block"><input type="radio" name="q8" value="Lithography" class="mr-2"> Lithography</label>
+          <label class="block"><input type="radio" name="q8" value="Monotype" class="mr-2"> Monotype</label>
+          <label class="block"><input type="radio" name="q8" value="Silkscreen" class="mr-2"> Silkscreen</label>
+        </div>
+        <div>
+          <p class="font-medium">9. What is chiaroscuro?</p>
+          <label class="block"><input type="radio" name="q9" value="Light and shadow contrast" class="mr-2"> Light and shadow contrast</label>
+          <label class="block"><input type="radio" name="q9" value="Perspective drawing" class="mr-2"> Perspective drawing</label>
+          <label class="block"><input type="radio" name="q9" value="Color theory" class="mr-2"> Color theory</label>
+          <label class="block"><input type="radio" name="q9" value="Oil painting" class="mr-2"> Oil painting</label>
+        </div>
+        <div>
+          <p class="font-medium">10. Who painted "Guernica"?</p>
+          <label class="block"><input type="radio" name="q10" value="Pablo Picasso" class="mr-2"> Pablo Picasso</label>
+          <label class="block"><input type="radio" name="q10" value="Diego Rivera" class="mr-2"> Diego Rivera</label>
+          <label class="block"><input type="radio" name="q10" value="Francisco Goya" class="mr-2"> Francisco Goya</label>
+          <label class="block"><input type="radio" name="q10" value="Salvador Dalí" class="mr-2"> Salvador Dalí</label>
+        </div>
+        <button type="submit" class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Submit Quiz</button>
+      </form>
+      <p id="quizResult" class="mt-4 font-medium text-purple-600"></p>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById('artPoll').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const selected = document.querySelector('input[name="style"]:checked');
+      if (selected) {
+        document.getElementById('pollResult').textContent = `Thank you for voting for ${selected.value}!`;
+      } else {
+        document.getElementById('pollResult').textContent = 'Please select an option before submitting.';
+      }
+    });
+
+    document.getElementById('artQuiz').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const answers = {
+        q1: 'Leonardo da Vinci',
+        q2: 'Surrealism',
+        q3: 'Clay',
+        q4: 'Vincent van Gogh',
+        q5: 'Fresco',
+        q6: 'David',
+        q7: 'Cubism',
+        q8: 'Engraving',
+        q9: 'Light and shadow contrast',
+        q10: 'Pablo Picasso'
+      };
+      let score = 0;
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+      document.getElementById('quizResult').textContent = `You scored ${score}/10!`;
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('rightSidebar');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('visible');
+      const isVisible = sidebar.classList.contains('visible');
+      menuToggle.setAttribute('aria-expanded', isVisible);
+    });
+  </script>
+
+</body>
+</html>
